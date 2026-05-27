@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Booking = require("../models/Booking");
 
+const axios = require("axios");
 
 // CREATE BOOKING
 router.post("/create", async (req, res) => {
@@ -12,6 +13,34 @@ router.post("/create", async (req, res) => {
         const booking = new Booking(req.body);
 
         await booking.save();
+
+
+        // EVENT-DRIVEN NOTIFICATION
+        // Simulate driver search
+
+        setTimeout(async () => {
+
+            try {
+
+                await axios.post(
+                    "http://localhost:5001/api/customers/notifications",
+                    {
+                        userId: booking.userId,
+                        message:
+                            `Your cab from ${booking.pickupLocation} to ${booking.destinationLocation} is ready for pickup.`
+                    }
+                );
+
+                console.log("Cab ready notification sent");
+
+            } catch (error) {
+
+                console.log(error.message);
+
+            }
+
+        }, 10000); // (180000) 3 minutes
+
 
         res.status(201).json({
             message: "Booking created successfully",

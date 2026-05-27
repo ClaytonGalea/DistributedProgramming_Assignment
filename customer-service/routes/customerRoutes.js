@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const User = require("../models/User");
 
+const Notification = require("../models/Notification");
 
 // TEST ROUTE
 router.post("/test", (req, res) => {
@@ -103,6 +104,101 @@ router.post("/login", async (req, res) => {
             }
 
         });
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+
+});
+
+// GET USER NOTIFICATIONS
+router.get("/notifications/:userId", async (req, res) => {
+
+    try {
+
+        const notifications = await Notification.find({
+            userId: req.params.userId
+        }).sort({ createdAt: -1 });
+
+        res.json(notifications);
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+
+});
+
+// CREATE NOTIFICATION
+router.post("/notifications", async (req, res) => {
+
+    try {
+
+        const notification = new Notification(req.body);
+
+        await notification.save();
+
+        res.status(201).json({
+            message: "Notification created",
+            notification
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+
+});
+
+// GET USER DETAILS
+router.get("/:userId", async (req, res) => {
+
+    try {
+
+        const user = await User.findById(req.params.userId);
+
+        res.json(user);
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
+    }
+
+});
+
+// UNLOCK DISCOUNT
+router.put("/unlock-discount/:userId", async (req, res) => {
+
+    try {
+
+        const updatedUser = await User.findByIdAndUpdate(
+
+            req.params.userId,
+
+            {
+                discountUnlocked: true
+            },
+
+            {
+                new: true
+            }
+
+        );
+
+        res.json(updatedUser);
 
     } catch (error) {
 
