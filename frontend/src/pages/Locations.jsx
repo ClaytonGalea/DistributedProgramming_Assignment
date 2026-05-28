@@ -30,7 +30,7 @@ function Locations() {
 
             const response = await axios.get(
 
-                `http://localhost:5000/api/locations/${user.id}`
+                `https://api-gateway-gn00.onrender.com/api/locations/${user.id}`
 
             );
 
@@ -52,7 +52,7 @@ function Locations() {
 
             await axios.post(
 
-                "http://localhost:5000/api/locations/add",
+                "https://api-gateway-gn00.onrender.com/api/locations/add",
 
                 {
                     userId: user.id,
@@ -82,7 +82,7 @@ function Locations() {
 
             const response = await axios.get(
 
-                `http://localhost:5000/api/locations/weather/${city}`
+                `https://api-gateway-gn00.onrender.com/api/locations/weather/${city}`
 
             );
 
