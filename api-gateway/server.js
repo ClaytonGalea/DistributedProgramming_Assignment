@@ -28,10 +28,7 @@ app.use(
     "/api/bookings",
     createProxyMiddleware({
         target: "http://localhost:5002",
-        changeOrigin: true,
-        pathRewrite: {
-            "^/api/bookings": "/api/bookings"
-        }
+        changeOrigin: true
     })
 );
 
@@ -41,12 +38,10 @@ app.use(
     "/api/payments",
     createProxyMiddleware({
         target: "http://localhost:5003",
-        changeOrigin: true,
-        pathRewrite: {
-            "^/api/payments": "/api/payments"
-        }
+        changeOrigin: true
     })
 );
+
 
 // FARE SERVICE
 app.use(
@@ -59,6 +54,17 @@ app.use(
         }
     })
 );
+
+
+// LOCATION SERVICE
+app.use(
+    "/api/locations",
+    createProxyMiddleware({
+        target: "http://localhost:5005",
+        changeOrigin: true
+    })
+);
+
 
 app.get("/", (req, res) => {
 

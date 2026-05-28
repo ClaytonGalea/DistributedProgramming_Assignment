@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/bookings", bookingRoutes);
+app.use("/", bookingRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
@@ -22,13 +22,17 @@ mongoose.connect(process.env.MONGO_URI)
 });
 
 app.get("/", (req, res) => {
+
     res.json({
         message: "Booking Service Running"
     });
+
 });
 
 const PORT = process.env.PORT || 5002;
 
 app.listen(PORT, () => {
+
     console.log(`Booking Service running on port ${PORT}`);
+
 });

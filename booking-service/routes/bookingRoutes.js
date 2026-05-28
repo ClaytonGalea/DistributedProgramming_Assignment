@@ -64,8 +64,7 @@ router.get("/current/:userId", async (req, res) => {
     try {
 
         const bookings = await Booking.find({
-            userId: req.params.userId,
-            status: "Current"
+            userId: req.params.userId
         });
 
         res.json(bookings);
