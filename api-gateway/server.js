@@ -48,6 +48,17 @@ app.use(
     })
 );
 
+// FARE SERVICE
+app.use(
+    "/api/fare",
+    createProxyMiddleware({
+        target: "http://localhost:5004",
+        changeOrigin: true,
+        pathRewrite: {
+            "^/api/fare": ""
+        }
+    })
+);
 
 app.get("/", (req, res) => {
 
