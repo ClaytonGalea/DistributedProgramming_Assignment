@@ -23,7 +23,7 @@ function Dashboard() {
 
             const response = await axios.get(
 
-                `http://localhost:5000/api/customers/notifications/${user.id}`
+               `https://api-gateway-gn00.onrender.com/api/customers/notifications/${user.id}`
 
             );
 

@@ -37,7 +37,7 @@ function Bookings() {
 
             const response = await axios.get(
 
-                `http://localhost:5000/api/bookings/current/${user.id}`
+                `https://api-gateway-gn00.onrender.com/api/bookings/current/${user.id}`
 
             );
 
@@ -59,7 +59,7 @@ function Bookings() {
 
             const response = await axios.get(
 
-                `http://localhost:5000/api/fare/estimate-fare?pickup=${pickup}&destination=${destination}`
+                `https://api-gateway-gn00.onrender.com/api/fare/estimate-fare?pickup=${pickup}&destination=${destination}`
 
             );
 
@@ -84,7 +84,7 @@ function Bookings() {
             // CREATE BOOKING
             const bookingResponse = await axios.post(
 
-                "http://localhost:5000/api/bookings/create",
+                "https://api-gateway-gn00.onrender.com/api/bookings/create",
 
                 {
                     userId: user.id,
@@ -109,7 +109,7 @@ function Bookings() {
             // PROCESS PAYMENT
             await axios.post(
 
-                "http://localhost:5000/api/payments/pay",
+                "https://api-gateway-gn00.onrender.com/api/payments/pay",
 
                 {
                     bookingId: booking._id,

@@ -17,7 +17,7 @@ function Login() {
 
             const response = await axios.post(
 
-                "http://localhost:5000/api/customers/login",
+                "https://api-gateway-gn00.onrender.com/api/customers/login",
 
                 {
                     email,

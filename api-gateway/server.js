@@ -14,7 +14,7 @@ app.use(cors());
 app.use(
     "/api/customers",
     createProxyMiddleware({
-        target: "http://localhost:5001",
+        target: "https://distributedprogramming-assignment.onrender.com",
         changeOrigin: true,
         pathRewrite: {
             "^/api/customers": "/api/customers"
@@ -27,7 +27,7 @@ app.use(
 app.use(
     "/api/bookings",
     createProxyMiddleware({
-        target: "http://localhost:5002",
+        target: "https://booking-service-zxa0.onrender.com",
         changeOrigin: true
     })
 );
@@ -37,7 +37,7 @@ app.use(
 app.use(
     "/api/payments",
     createProxyMiddleware({
-        target: "http://localhost:5003",
+        target: "https://payment-service-ede8.onrender.com",
         changeOrigin: true
     })
 );
@@ -47,7 +47,7 @@ app.use(
 app.use(
     "/api/fare",
     createProxyMiddleware({
-        target: "http://localhost:5004",
+        target: "https://fare-service-pd0j.onrender.com",
         changeOrigin: true,
         pathRewrite: {
             "^/api/fare": ""
@@ -60,7 +60,7 @@ app.use(
 app.use(
     "/api/locations",
     createProxyMiddleware({
-        target: "http://localhost:5005",
+        target: "https://location-service-zcol.onrender.com",
         changeOrigin: true
     })
 );
